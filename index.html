@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renata Silva — Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #667eea;
+      --primary-dark: #5a67d8;
+      --accent: #764ba2;
+      --bg: #f7f8fc;
+      --card-bg: #ffffff;
+      --text: #2d3748;
+      --text-light: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-content { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      margin: 0 auto 1.2rem;
+      border: 3px solid rgba(255,255,255,0.4);
+    }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .hero .subtitle { font-size: 1.15rem; opacity: 0.9; font-weight: 500; }
+    .hero .location { font-size: 0.95rem; opacity: 0.7; margin-top: 0.4rem; }
+    .hero-links {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-links a {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .hero-links a:hover { background: rgba(255,255,255,0.3); }
+
+    /* ═══ NAV ═══ */
+    .nav {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .nav-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      padding: 0 1rem;
+    }
+    .nav a {
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .nav a:hover, .nav a.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* ═══ SECTIONS ═══ */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 3rem 0; }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-title .icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ═══ PROJECTS ═══ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .project-banner {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+    .project-banner.task { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .project-banner.poke { background: linear-gradient(135deg, #e63946, #c1121f); }
+    .project-banner.weather { background: linear-gradient(135deg, #1e3a5f, #0d1b2a); }
+    .project-body { padding: 1.2rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-body h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .project-body p { font-size: 0.9rem; color: var(--text-light); flex: 1; }
+    .project-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .tag {
+      background: #eef2ff;
+      color: var(--primary-dark);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .project-links a {
+      flex: 1;
+      text-align: center;
+      padding: 0.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .link-code {
+      background: #f7fafc;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .link-code:hover { background: #edf2f7; }
+    .link-demo {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+    }
+    .link-demo:hover { opacity: 0.9; }
+
+    /* ═══ RESUME ═══ */
+    .resume-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .resume-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .resume-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .resume-item { margin-bottom: 1.2rem; }
+    .resume-item:last-child { margin-bottom: 0; }
+    .resume-item h4 { font-size: 0.95rem; color: var(--text); }
+    .resume-item .company { color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+    .resume-item .period { font-size: 0.8rem; color: var(--text-light); }
+    .resume-item .desc { font-size: 0.85rem; color: var(--text-light); margin-top: 0.3rem; }
+
+    .about-text {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .skill-tag {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.8rem; }
+      .resume-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .nav-content { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-avatar">👩‍💻</div>
+      <h1>Renata Silva</h1>
+      <p class="subtitle">Desenvolvedora Front-End Júnior</p>
+      <p class="location">📍 Brasília, DF — Brasil</p>
+      <div class="hero-links">
+        <a href="https://github.com/RenataSilvaB" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/renatasilva-9b1517265" target="_blank">LinkedIn</a>
+        <a href="mailto:bsilvaren@gmail.com">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="#projetos" class="active">Projetos</a>
+      <a href="#curriculo">Currículo</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+  </nav>
+
+  <!-- PROJECTS -->
+  <section id="projetos">
+    <div class="container">
+      <h2 class="section-title"><span class="icon">🚀</span> Projetos</h2>
+      <div class="projects-grid">
+
+        <!-- Task Manager -->
+        <div class="project-card">
+          <div class="project-banner task">✓</div>
+          <div class="project-body">
+            <h3>Task Manager</h3>
+            <p>Aplicação de gerenciamento de tarefas com CRUD completo, filtros por status, níveis de prioridade e persistência com localStorage.</p>
+            <div class="project-tags">
+              <span class="tag">Angular 19</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">localStorage</span>
+              <span class="tag">CSS3</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/RenataSilvaB/task-manager" target="_blank" class="link-code">📂 Código</a>
+            <a href="https://renatasilvab.github.io/task-manager/" target="_blank" class="link-demo">▶ Demo</a>
+          </div>
+        </div>
+
+        <!-- Pokédex -->
+        <div class="project-card">
+          <div class="project-banner poke">●</div>
+          <div class="project-body">
+            <h3>Pokédex</h3>
+            <p>Pokédex interativa consumindo a PokéAPI, com busca por nome, listagem paginada, detalhes com estatísticas e cores por tipo.</p>
+            <div class="project-tags">
+              <span class="tag">Angular 19</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">PokéAPI</span>
+              <span class="tag">RxJS</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/RenataSilvaB/pokedex" target="_blank" class="link-code">📂 Código</a>
+            <a href="https://renatasilvab.github.io/pokedex/" target="_blank" class="link-demo">▶ Demo</a>
+          </div>
+        </div>
+
+        <!-- Weather App -->
+        <div class="project-card">
+          <div class="project-banner weather">🌤️</div>
+          <div class="project-body">
+            <h3>Weather App</h3>
+            <p>App de previsão do tempo com busca por cidades, dados em tempo real, previsão de 3 dias e interface glassmorphism.</p>
+            <div class="project-tags">
+              <span class="tag">Angular 19</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">wttr.in API</span>
+              <span class="tag">Glassmorphism</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/RenataSilvaB/weather-app" target="_blank" class="link-code">📂 Código</a>
+            <a href="https://renatasilvab.github.io/weather-app/" target="_blank" class="link-demo">▶ Demo</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="curriculo">
+    <div class="container">
+      <h2 class="section-title"><span class="icon">📄</span> Currículo</h2>
+
+      <div class="resume-grid">
+        <div class="resume-card">
+          <h3>💼 Experiência</h3>
+
+          <div class="resume-item">
+            <h4>Estagiária de TI</h4>
+            <p class="company">INAS – Instituto de Assistência à Saúde dos Servidores do DF</p>
+            <p class="period">Mai/2024 — Dez/2025 · 1 ano 8 meses</p>
+            <p class="desc">Brasília, DF</p>
+          </div>
+
+          <div class="resume-item">
+            <h4>Gerente Assistente</h4>
+            <p class="company">Flex Pedras</p>
+            <p class="period">Jan/2021 — Fev/2022 · 1 ano 2 meses</p>
+            <p class="desc">Brasília, DF</p>
+          </div>
+        </div>
+
+        <div class="resume-card">
+          <h3>🎓 Formação</h3>
+
+          <div class="resume-item">
+            <h4>Bacharelado em Sistemas de Informação</h4>
+            <p class="company">Grupo Projeção</p>
+            <p class="period">Mar/2022 — Dez/2025</p>
+          </div>
+
+          <div class="resume-item" style="margin-top: 1.5rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.8rem;">🛠 Competências</h3>
+            <div class="skills-list">
+              <span class="skill-tag">Angular</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">PHP</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Git</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="sobre">
+    <div class="container">
+      <h2 class="section-title"><span class="icon">👩‍💻</span> Sobre</h2>
+      <div class="about-text">
+        Desenvolvedora Front-End Júnior com formação em Sistemas de Informação (2022–2025),
+        focada no desenvolvimento de interfaces web responsivas, acessíveis e intuitivas.
+        Possuo conhecimento em criação de aplicações utilizando boas práticas de código,
+        usabilidade e experiência do usuário, buscando sempre unir tecnologia e funcionalidade
+        para entregar soluções eficientes. Estou em constante aprendizado e busco evoluir
+        profissionalmente na área de Front-End, contribuindo para o desenvolvimento de produtos
+        digitais modernos e de qualidade.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Renata Silva · Feito com ❤️ e Angular</p>
+  </footer>
+
+  <!-- Smooth scroll + active nav -->
+  <script>
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const id = link.getAttribute('href').substring(1);
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.nav a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const sections = ['projetos', 'curriculo', 'sobre'];
+      let current = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 100) current = id;
+      }
+      document.querySelectorAll('.nav a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+
+</body>
+</html>
